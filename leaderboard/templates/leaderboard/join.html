@@ -1,0 +1,30 @@
+{% extends "leaderboard/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 class="mt-2">Join the Leaderboard</h1>
+<hr class="mt-0 mb-4">
+
+{% if not flag %}
+<div class="form">
+  <form method="post">
+    {% csrf_token %} {{form|crispy}}
+    <button type="submit" class="btn btn-success">Join the Leaderboard</button>
+  </form>
+</div>
+{% endif %}
+
+{% if flag %}
+<div class="result">
+  <p>{{ username }} have registered the Leaderboard!</p>
+  <p>Your microservice is:</p>
+  <p>{{ url }}</p>
+  <p>Your Flag is: {{ flag }}</p>
+  <a class="btn btn-primary" href="/board">Go to Leaderboard</a>
+</div>
+{% endif %}
+
+{% endblock %}
+{% block result %}
+{% endblock %}

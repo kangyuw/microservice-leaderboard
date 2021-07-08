@@ -1,0 +1,37 @@
+{% extends "leaderboard/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+<h1 class="mt-2">Verify Microservice</h1>
+<hr class="mt-0 mb-4">
+
+{% if not_exist %}
+<div class="result">
+    <p>Username: {{ username }} is not exist!</p>
+    <a class="btn btn-primary" href="/join">Join Leaderboard</a>
+</div>
+
+{% elif not flag %}
+<div class="form">
+  <form method="post">
+    {% csrf_token %} {{form|crispy}}
+    <button type="submit" class="btn btn-success">Verify the Service</button>
+  </form>
+</div>
+
+{% endif %}
+
+
+{% if flag %}
+<div class="result">
+  <p>Your microservice is: {{ url }}</p>
+  <p>Your Flag is: {{ flag }}</p>
+  <p>{{ result_message }}</p>
+  <a class="btn btn-primary" href="/board">Go to Leaderboard</a>
+</div>
+{% endif %}
+
+{% endblock %}
+{% block result %}
+{% endblock %}

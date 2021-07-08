@@ -1,0 +1,38 @@
+{% extends "leaderboard/base.html" %}
+{% load render_table from django_tables2 %}
+{% block content %}
+{% load tz %}
+
+<div class="header">
+    <a href="https://riverpointtechnology.com/">
+      <img src="https://i.imgur.com/VpNLgdY.png" alt="rpt_logo" style="width:100px;"/>
+    </a>
+    <h1 class="mt-2">Welcome to GCP & River Point Technology Workshop Leaderboard</h1>
+    <hr class="mt-0 mb-4">
+</div>
+
+<div class="finished">
+<h2>Finished Players</h2>
+<hr class="mt-0 mb-4">
+
+{% timezone 'US/Eastern' %}
+{% render_table table_done %}
+{% endtimezone %}
+
+</div>
+
+<div class="unfinished">
+<h2>Unfinished Players</h2>
+<hr class="mt-0 mb-4">
+
+{% timezone 'US/Eastern' %}
+{% render_table table_not %}
+{% endtimezone %}
+
+</div>
+
+
+<a class="btn btn-primary btn-lg" href="/join">Join or Update</a>
+<a class="btn btn-success btn-lg" href="/verify">Verify Microservice</a>
+
+{% endblock %}
